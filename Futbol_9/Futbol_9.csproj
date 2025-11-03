@@ -96,4 +96,8 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Resources\icons_general\" />
+	</ItemGroup>
+
 </Project>

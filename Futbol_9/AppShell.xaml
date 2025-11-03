@@ -4,48 +4,53 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vistas="clr-namespace:Futbol_9.Vistas;assembly=Futbol_9"
-    Title="Futbol_9">
-    <ShellContent 
-        Title="Campeonato" 
-        Route="campeonato" 
-        ContentTemplate="{DataTemplate vistas:PaginaCampeonato}" />
-    <ShellContent
-        Title="Registrar"
-        Route="equipos"
-        ContentTemplate="{DataTemplate vistas:PaginaEquipos}" />
-    <ShellContent
-        Title="Jugadores"
-        Route="jugadores"
-        ContentTemplate="{DataTemplate vistas:PaginaJugadores}"/>
-    <ShellContent 
-        Title="Total equipos" 
-        Route="equipos-resumen" 
-        ContentTemplate="{DataTemplate vistas:PaginaResumenEquipos}" />
+    Title="Futbol 9"
+    FlyoutBackgroundColor="White">
 
+    <!-- Header del menú -->
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="#2196F3" Padding="20, 40, 20, 20">
+            <Label Text="Futbol 9" 
+                   TextColor="White" 
+                   FontSize="24" 
+                   FontAttributes="Bold"
+                   VerticalOptions="Center" />
+        </Grid>
+    </Shell.FlyoutHeader>
 
-    <ShellContent 
-        Title="Planes"  
-        Route="planes"  
-        ContentTemplate="{DataTemplate vistas:PaginaPlanes}"  />
-    <ShellContent 
-        Title="Pagos"    
-        Route="pagos"    
-        ContentTemplate="{DataTemplate vistas:PaginaRegistrarPagos}" />
+    <!-- Items del menú desplegable -->
+    <FlyoutItem Title="Inicio" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Inicio" Icon="dotnet_bot.png" ContentTemplate="{DataTemplate vistas:MainPage}" Route="MainPage" />
+    </FlyoutItem>
 
-    <ShellContent 
-        Title="Estado"  
-        Route="estado"  
-        ContentTemplate="{DataTemplate vistas:PaginaEstadoEquipos}" />
+    <FlyoutItem Title="Campeonatos" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Campeonatos" Icon="trophy.png" ContentTemplate="{DataTemplate vistas:PaginaCampeonato}" Route="campeonato" />
+    </FlyoutItem>
 
-    <!--<ShellContent
-        Title="Grupos"
-        Route="grupos"
-        ContentTemplate="{DataTemplate vistas:PaginaGrupos}"/>-->
+    <FlyoutItem Title="Equipos" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Equipos" Icon="team.png" ContentTemplate="{DataTemplate vistas:PaginaEquipos}" Route="equipos" />
+    </FlyoutItem>
 
-    <ShellContent 
-        Title="Asignación (Sorteo)" 
-        Route="asignacion" 
-        ContentTemplate="{DataTemplate vistas:PaginaAsignacionSorteo}" />
+    <FlyoutItem Title="Jugadores" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Jugadores" Icon="players.png" ContentTemplate="{DataTemplate vistas:PaginaJugadores}" Route="jugadores" />
+    </FlyoutItem>
 
+    <FlyoutItem Title="Grupos" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Grupos" Icon="group.png" ContentTemplate="{DataTemplate vistas:PaginaGrupos}" Route="grupos" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Pagos" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Planes de Pago" Icon="payment.png" ContentTemplate="{DataTemplate vistas:PaginaPlanes}" Route="planes" />
+        <ShellContent Title="Registrar Pagos" Icon="money.png" ContentTemplate="{DataTemplate vistas:PaginaRegistrarPagos}" Route="pagos" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Resúmenes" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Resumen Equipos" Icon="summary.png" ContentTemplate="{DataTemplate vistas:PaginaResumenEquipos}" Route="equipos-resumen" />
+        <ShellContent Title="Estado Equipos" Icon="status.png" ContentTemplate="{DataTemplate vistas:PaginaEstadoEquipos}" Route="estado" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Sorteo" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Asignación (Sorteo)" Icon="draw.png" ContentTemplate="{DataTemplate vistas:PaginaAsignacionSorteo}" Route="asignacion" />
+    </FlyoutItem>
 
 </Shell>

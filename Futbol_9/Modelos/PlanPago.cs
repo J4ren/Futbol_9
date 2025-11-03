@@ -18,7 +18,7 @@ namespace Futbol_9.Modelos
         public int EquipoId { get; set; }
 
         public TipoPlanPago Tipo { get; set; }
-        public decimal MontoTotal { get; set; } = 100m;
+        public decimal MontoTotal { get; set; };
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
         public DateTime LimitePago { get; set; } = DateTime.Today.AddMonths(1);
 
