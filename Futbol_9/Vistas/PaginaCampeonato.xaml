@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Futbol_9.Vistas.PaginaCampeonato"
+             Title="Configuracion del Campeonato">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+
+            <Label Text="Datos del Campeonato" FontSize="20" FontAttributes="Bold" />
+
+            <Entry x:Name="txtNombre" Placeholder="Nombre del campeonato" />
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <VerticalStackLayout>
+                    <Label Text="Inicio del campeonato" />
+                    <DatePicker x:Name="dpCampIni" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="Fin del campeonato" />
+                    <DatePicker x:Name="dpCampFin" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <VerticalStackLayout>
+                    <Label Text="Inicio de inscripciones" />
+                    <DatePicker x:Name="dpInsIni" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="Fin de inscripciones (límite de pago)" />
+                    <DatePicker x:Name="dpInsFin" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <VerticalStackLayout>
+                    <Label Text="Monto de inscripción (S/)" />
+                    <Entry x:Name="txtMonto" Keyboard="Numeric" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1" VerticalOptions="End">
+                    <CheckBox x:Name="chkCuotas" />
+                    <Label Text="Permitir pagos en cuotas" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <HorizontalStackLayout Spacing="10">
+                <Button Text="Guardar" Clicked="Guardar_Clicked" />
+                <Button Text="Establecer como Activo" Clicked="Activar_Clicked" />
+                <Button Text="Recargar" Clicked="Recargar_Clicked" />
+            </HorizontalStackLayout>
+
+            <BoxView HeightRequest="1" Color="#DDDDDD" />
+
+            <Label Text="Campeonatos" FontAttributes="Bold" />
+            <CollectionView x:Name="cvListado">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="0,6" Padding="10" HasShadow="True" CornerRadius="12">
+                            <VerticalStackLayout Spacing="2">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <Label Text="{Binding Nombre}" FontAttributes="Bold" />
+                                    <Label Grid.Column="1" Text="{Binding Activo, StringFormat='Activo: {0}'}" />
+                                </Grid>
+                                <Label Text="{Binding FechaInicioCampeonato, StringFormat='Camp: {0:dd/MM/yyyy}'}" />
+                                <Label Text="{Binding FechaFinCampeonato,   StringFormat='Fin:  {0:dd/MM/yyyy}'}" />
+                                <Label Text="{Binding InscripcionInicio,   StringFormat='Inscripción: {0:dd/MM/yyyy}'}" />
+                                <Label Text="{Binding InscripcionFin,      StringFormat='Límite pago: {0:dd/MM/yyyy}'}" />
+                                <Label Text="{Binding MontoInscripcion,    StringFormat='Monto: S/ {0:F2}'}" />
+                                <Label Text="{Binding PermiteCuotas,       StringFormat='Cuotas: {0}'}" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

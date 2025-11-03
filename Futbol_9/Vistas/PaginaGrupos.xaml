@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Futbol_9.Vistas.PaginaGrupos"
+             Title="Crear Grupos">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14">
+
+            <Label Text="Crear grupos del campeonato" FontSize="20" FontAttributes="Bold" />
+
+            <Picker x:Name="pkCampeonato" Title="Seleccione un campeonato" />
+
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                <Entry x:Name="txtCantidadGrupos" Placeholder="Cantidad de grupos (ej. 2, 4, 8)" Keyboard="Numeric" />
+                <Button Grid.Column="1" Text="Generar" Clicked="Generar_Clicked" />
+            </Grid>
+
+            <Switch x:Name="swSoloHabilitados" IsToggled="True" />
+            <Label Text="Incluir solo equipos habilitados (pago completo)" />
+
+            <Button Text="Guardar grupos" Clicked="Guardar_Clicked" />
+
+            <BoxView HeightRequest="1" Color="#CCC" />
+
+            <Label Text="Resultado (vista previa)" FontAttributes="Bold" />
+            <CollectionView x:Name="cvResultado">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="0,6" Padding="10" HasShadow="False" BorderColor="#CCC">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding NombreGrupo}" FontAttributes="Bold" />
+                                <CollectionView ItemsSource="{Binding Equipos}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Text="{Binding Nombre}" />
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

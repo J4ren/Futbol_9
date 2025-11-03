@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Futbol_9.Vistas.PaginaResumenEquipos"
+             Title="Total de equipos registrados">
+
+    <VerticalStackLayout Padding="20" Spacing="12">
+
+        <Grid ColumnDefinitions="*,Auto">
+            <Label Text="Todos los equipos registrados" FontSize="20" FontAttributes="Bold" />
+            <Button Grid.Column="1" Text="Actualizar" Clicked="Actualizar_Clicked" />
+        </Grid>
+
+        <CollectionView x:Name="cvResumen">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,6" Padding="10" HasShadow="False" BorderColor="#CCCCCC" CornerRadius="8">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="{Binding NombreEquipo}" FontAttributes="Bold" FontSize="16" />
+                            <Label Text="{Binding Delegado, StringFormat='Delegado: {0}'}" />
+                            <Label Text="{Binding Jugadores, StringFormat='Jugadores registrados: {0} / 18'}" />
+                            <Label Text="{Binding EstadoTexto, StringFormat='Estado: {0}'}" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label FontSize="12"
+               Text="Estado: 'Habilitado' = plan totalmente pagado y puede registrar jugadores. 'No habilitado' = aún no completó el pago." />
+
+    </VerticalStackLayout>
+    
+</ContentPage>

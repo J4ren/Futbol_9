@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Futbol_9.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vistas="clr-namespace:Futbol_9.Vistas;assembly=Futbol_9"
+    Title="Futbol_9">
+    <ShellContent 
+        Title="Campeonato" 
+        Route="campeonato" 
+        ContentTemplate="{DataTemplate vistas:PaginaCampeonato}" />
+    <ShellContent
+        Title="Registrar"
+        Route="equipos"
+        ContentTemplate="{DataTemplate vistas:PaginaEquipos}" />
+    <ShellContent
+        Title="Jugadores"
+        Route="jugadores"
+        ContentTemplate="{DataTemplate vistas:PaginaJugadores}"/>
+    <ShellContent 
+        Title="Total equipos" 
+        Route="equipos-resumen" 
+        ContentTemplate="{DataTemplate vistas:PaginaResumenEquipos}" />
+
+
+    <ShellContent 
+        Title="Planes"  
+        Route="planes"  
+        ContentTemplate="{DataTemplate vistas:PaginaPlanes}"  />
+    <ShellContent 
+        Title="Pagos"    
+        Route="pagos"    
+        ContentTemplate="{DataTemplate vistas:PaginaRegistrarPagos}" />
+
+    <ShellContent 
+        Title="Estado"  
+        Route="estado"  
+        ContentTemplate="{DataTemplate vistas:PaginaEstadoEquipos}" />
+
+    <!--<ShellContent
+        Title="Grupos"
+        Route="grupos"
+        ContentTemplate="{DataTemplate vistas:PaginaGrupos}"/>-->
+
+    <ShellContent 
+        Title="Asignación (Sorteo)" 
+        Route="asignacion" 
+        ContentTemplate="{DataTemplate vistas:PaginaAsignacionSorteo}" />
+
+
+</Shell>

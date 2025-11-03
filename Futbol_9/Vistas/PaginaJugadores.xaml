@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Futbol_9.Vistas.PaginaJugadores"
+             Title="Registar Jugadores">
+
+
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14">
+
+            <Label Text="Equipos halitados" FontSize="20" FontAttributes="Bold" />
+
+            <Picker x:Name="pkEquipo" Title="Seleccione un equipo" SelectedIndexChanged="pkEquipo_SelectedIndexChanged" />
+
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                <Entry x:Name="txtJugadorNombre" Placeholder="Nombre completo del jugador" />
+                <Button Grid.Column="1" Text="Agregar" Clicked="AgregarJugador_Clicked" />
+            </Grid>
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <Entry x:Name="txtJugadorMovil" Placeholder="Número móvil" Keyboard="Telephone" />
+                <Entry x:Name="txtJugadorCamiseta" Placeholder="N° camiseta (1–99)" Keyboard="Numeric" Grid.Column="1" />
+            </Grid>
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                <Entry x:Name="txtJugadorDocumento" Placeholder="DNI" Keyboard="Text" />
+                <Button Grid.Column="1" Text="Agregar" Clicked="AgregarJugador_Clicked" />
+            </Grid>
+
+            <CollectionView x:Name="cvJugadores">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,Auto" Padding="0,6">
+                            <Label Text="{Binding NombreCompleto}" />
+                            <Button Grid.Column="1" Text="Eliminar" Clicked="EliminarJugador_Clicked" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label x:Name="lblContador" Text="0 / 18 jugadores" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

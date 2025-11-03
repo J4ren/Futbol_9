@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Futbol_9.Vistas.PaginaAsignacionSorteo"
+             Title="Asignacion del Sorteo">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+
+            <Label Text="Asignar equipos a grupos (modo sorteo)" FontSize="20" FontAttributes="Bold" />
+
+            <Picker x:Name="pkCampeonato" Title="Seleccione un campeonato" SelectedIndexChanged="pkCampeonato_SelectedIndexChanged" />
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <VerticalStackLayout>
+                    <Label Text="Grupo" />
+                    <Picker x:Name="pkGrupo" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="Equipo no asignado" />
+                    <Picker x:Name="pkEquipo" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <HorizontalStackLayout Spacing="10">
+                <Button Text="Agregar al grupo" Clicked="Agregar_Clicked" />
+                <Button Text="Quitar del grupo" Clicked="Quitar_Clicked" />
+                <Button Text="Actualizar" Clicked="Actualizar_Clicked" />
+            </HorizontalStackLayout>
+
+            <BoxView HeightRequest="1" Color="#CCCCCC" />
+
+            <Label Text="Grupos y sus equipos (vista actual)" FontAttributes="Bold" />
+
+            <CollectionView x:Name="cvGrupos">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="0,6" Padding="10" HasShadow="False" BorderColor="#CCCCCC" CornerRadius="8">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="{Binding Nombre}" FontAttributes="Bold" />
+                                <CollectionView ItemsSource="{Binding Equipos}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid ColumnDefinitions="*,Auto" Padding="0,2">
+                                                <Label Text="{Binding Nombre}" />
+                                                <Button Grid.Column="1" Text="Quitar" Clicked="QuitarItem_Clicked" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

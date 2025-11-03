@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Futbol_9.Vistas.PaginaRegistrarPagos"
+             Title="Registrar Pagos">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="Registrar Pagos por Cuota" FontSize="20" FontAttributes="Bold" />
+
+            <!-- Banner -->
+            <Frame x:Name="frmInfoPlan" BackgroundColor="#F1F8E9" Padding="10" CornerRadius="10" IsVisible="False">
+                <VerticalStackLayout Spacing="2">
+                    <Label x:Name="lblPlanEquipo" FontAttributes="Bold" />
+                    <Label x:Name="lblPlanLimite" />
+                    <Label x:Name="lblPlanTotal" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Picker x:Name="pkEquipo" Title="Seleccione un equipo" SelectedIndexChanged="pkEquipo_SelectedIndexChanged" />
+
+            <Picker x:Name="pkPlan" Title="Seleccione un plan" IsVisible="False" SelectedIndexChanged="pkPlan_SelectedIndexChanged" />
+
+            <Grid ColumnDefinitions="*,Auto" Padding="0,10,0,0">
+                <Label Text="Cuotas del plan" FontAttributes="Bold" />
+                <Button Grid.Column="1" Text="Actualizar" Clicked="Refrescar_Clicked" />
+            </Grid>
+
+            <CollectionView x:Name="cvCuotas">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="Auto,*,Auto,Auto" Padding="0,6">
+                            <Label Text="{Binding Numero}" Margin="0,0,8,0" />
+                            <Label Grid.Column="1" Text="{Binding FechaVencimiento, StringFormat='{0:dd/MM/yyyy}'}" />
+                            <Label Grid.Column="2" Text="{Binding Importe, StringFormat='S/ {0:F2}'}" Margin="8,0" />
+                            <StackLayout Grid.Column="3" Orientation="Horizontal" Spacing="8">
+                                <Label Text="{Binding Pagada, StringFormat='Pagada: {0}'}" />
+                                <Button Text="Pagar" Clicked="Pagar_Clicked" />
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <BoxView HeightRequest="1" Color="#DDDDDD" />
+
+            <HorizontalStackLayout>
+                <Label x:Name="lblTotal"  Text="Total: S/ 0.00" FontAttributes="Bold" />
+                <Label x:Name="lblPagado" Text="  |  Pagado: S/ 0.00" FontAttributes="Bold" />
+                <Label x:Name="lblSaldo"  Text="  |  Saldo: S/ 0.00" FontAttributes="Bold" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

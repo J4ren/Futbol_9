@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Futbol_9.Vistas.PaginaPlanes"
+             Title="Planes de pago">
+
+
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14">
+
+            <Label Text="Crear Plan de Pago" FontSize="20" FontAttributes="Bold" />
+
+            <!-- Info del campeonato activo -->
+            <Frame x:Name="frmInfoCamp" BackgroundColor="#EEF5FF" Padding="10" CornerRadius="10" IsVisible="False">
+                <VerticalStackLayout Spacing="2">
+                    <Label x:Name="lblCampNombre" FontAttributes="Bold" />
+                    <Label x:Name="lblCampIns" />
+                    <Label x:Name="lblCampMonto" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Picker x:Name="pkEquipo" Title="Seleccione un equipo" />
+
+            <!-- Fechas provenientes del campeonato activo (solo lectura) -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <VerticalStackLayout>
+                    <Label Text="Inicio inscripciones (desde campeonato)" />
+                    <DatePicker x:Name="dpInicio" IsEnabled="False" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="Fin inscripciones / Límite pago (desde campeonato)" />
+                    <DatePicker x:Name="dpFin" IsEnabled="False" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <Picker x:Name="pkPlan" Title="Tipo de plan">
+                <Picker.Items>
+                    <x:String>Pago Único (S/ 100)</x:String>
+                    <x:String>Anticipo + Saldo (S/ 35 + 65)</x:String>
+                    <x:String>3 Cuotas (S/ 35 + 35 + 30)</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Button Text="Crear plan y cuotas" Clicked="CrearPlan_Clicked" />
+
+            <BoxView HeightRequest="1" Color="#DDDDDD" />
+
+            <Label Text="Cuotas del plan" FontAttributes="Bold" />
+            <CollectionView x:Name="cvCuotas">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="Auto,*,Auto,Auto" Padding="0,6">
+                            <Label Text="{Binding Numero}" Margin="0,0,8,0" />
+                            <Label Grid.Column="1" Text="{Binding FechaVencimiento, StringFormat='{0:dd/MM/yyyy}'}" />
+                            <Label Grid.Column="2" Text="{Binding Importe, StringFormat='S/ {0:F2}'}" Margin="8,0"/>
+                            <Label Grid.Column="3" Text="{Binding Pagada, StringFormat='Pagada: {0}'}" Margin="8,0"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
