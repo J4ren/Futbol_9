@@ -4,48 +4,74 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vistas="clr-namespace:Futbol_9.Vistas;assembly=Futbol_9"
-    Title="Futbol_9">
-    <ShellContent 
-        Title="Campeonato" 
-        Route="campeonato" 
-        ContentTemplate="{DataTemplate vistas:PaginaCampeonato}" />
-    <ShellContent
-        Title="Registrar"
-        Route="equipos"
-        ContentTemplate="{DataTemplate vistas:PaginaEquipos}" />
-    <ShellContent
-        Title="Jugadores"
-        Route="jugadores"
-        ContentTemplate="{DataTemplate vistas:PaginaJugadores}"/>
-    <ShellContent 
-        Title="Total equipos" 
-        Route="equipos-resumen" 
-        ContentTemplate="{DataTemplate vistas:PaginaResumenEquipos}" />
+    Title="Futbol_9"
+    Shell.NavBarIsVisible="False"
+    Shell.BackgroundColor="#0B2447"
+    Shell.ForegroundColor="White"
+    Shell.TitleColor="White"
+    FlyoutBehavior="Disabled">
 
+    <!-- TabBar = secciones swipeables (Android/iOS admiten swipe entre tabs) -->
+    <TabBar Title="Futbol_9">
 
-    <ShellContent 
-        Title="Planes"  
-        Route="planes"  
-        ContentTemplate="{DataTemplate vistas:PaginaPlanes}"  />
-    <ShellContent 
-        Title="Pagos"    
-        Route="pagos"    
-        ContentTemplate="{DataTemplate vistas:PaginaRegistrarPagos}" />
+        <!-- 0) Inicio / Dashboard simple -->
+        <ShellContent
+            Title="Inicio"
+            Route="inicio"
+            ContentTemplate="{DataTemplate vistas:PaginaInicio}" />
 
-    <ShellContent 
-        Title="Estado"  
-        Route="estado"  
-        ContentTemplate="{DataTemplate vistas:PaginaEstadoEquipos}" />
+        <!-- 1) Equipos (registro sin jugadores) -->
+        <ShellContent
+            Title="Equipos"
+            Route="equipos"
+            ContentTemplate="{DataTemplate vistas:PaginaEquipos}" />
 
-    <!--<ShellContent
-        Title="Grupos"
-        Route="grupos"
-        ContentTemplate="{DataTemplate vistas:PaginaGrupos}"/>-->
+        <!-- 2) Planes -->
+        <ShellContent
+            Title="Planes"
+            Route="planes"
+            ContentTemplate="{DataTemplate vistas:PaginaPlanes}" />
 
-    <ShellContent 
-        Title="Asignación (Sorteo)" 
-        Route="asignacion" 
-        ContentTemplate="{DataTemplate vistas:PaginaAsignacionSorteo}" />
+        <!-- 3) Pagos -->
+        <ShellContent
+            Title="Pagos"
+            Route="pagos"
+            ContentTemplate="{DataTemplate vistas:PaginaRegistrarPagos}" />
+
+        <!-- 4) Grupos (crear / preview) -->
+        <ShellContent
+            Title="Grupos"
+            Route="grupos"
+            ContentTemplate="{DataTemplate vistas:PaginaGrupos}" />
+
+        <!-- 5) Asignación manual (sorteo) -->
+        <ShellContent
+            Title="Sorteo"
+            Route="asignacion"
+            ContentTemplate="{DataTemplate vistas:PaginaAsignacionSorteo}" />
+
+        <!-- 6) Jugadores (solo equipos habilitados) -->
+        <ShellContent
+            Title="Jugadores"
+            Route="jugadores"
+            ContentTemplate="{DataTemplate vistas:PaginaJugadores}" />
+
+        <!-- 7) Resumen Equipos -->
+        <ShellContent
+            Title="Resumen"
+            Route="equipos-resumen"
+            ContentTemplate="{DataTemplate vistas:PaginaResumenEquipos}" />
+
+        <!-- 8) Campeonato (configuración) -->
+        <ShellContent
+            Title="Campeonato"
+            Route="campeonato"
+            ContentTemplate="{DataTemplate vistas:PaginaCampeonato}" />
+
+        <!-- 9) Estado (si ya la tienes) -->
+       <!-- <ShellContent Title="Estado" Route="estado" ContentTemplate="{DataTemplate vistas:PaginaEstado}" />-->
+
+    </TabBar>
 
 
 </Shell>
