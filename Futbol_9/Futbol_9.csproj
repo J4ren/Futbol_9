@@ -82,6 +82,9 @@
 	  <MauiXaml Update="Vistas\PaginaGrupos.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Vistas\PaginaInicio.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Vistas\PaginaJugadores.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Futbol_9.Vistas.PaginaInicio"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Inicio">
+
+    <Grid Padding="24" RowDefinitions="Auto,Auto,*,Auto">
+        <Label Text="Futbol_9" FontAttributes="Bold" FontSize="28" HorizontalOptions="Center" />
+        <Label Grid.Row="1" Text="Desliza izquierda ↔ derecha para cambiar de sección"
+               FontSize="14" HorizontalOptions="Center" Margin="0,6,0,16"/>
+        <VerticalStackLayout Grid.Row="2" Spacing="10">
+            <Label Text="Atajos rápidos" FontAttributes="Bold" />
+            <HorizontalStackLayout Spacing="10">
+                <Button Text="Equipos" Clicked="GoEquipos_Clicked"/>
+                <Button Text="Planes" Clicked="GoPlanes_Clicked"/>
+                <Button Text="Pagos" Clicked="GoPagos_Clicked"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <Label Grid.Row="3" FontSize="12" Text="v0.1 (demo swipe)" HorizontalOptions="Center" />
+    </Grid>
+</ContentPage>
