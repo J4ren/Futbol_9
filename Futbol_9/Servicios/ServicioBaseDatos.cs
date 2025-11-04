@@ -27,14 +27,14 @@ namespace Futbol_9.Servicios
 
         // --CRUD --
         public Task<int> InsertarEquipoAsync(Equipo e) => _db.InsertAsync(e);
-        public Task<Equipo?> ObtenerEquipoPorNombreAsync(string nombre) =>
-            _db.Table<Equipo>().Where(x => x.Nombre == nombre).FirstOrDefaultAsync();
+        public async Task<Equipo?> ObtenerEquipoPorNombreAsync(string nombre) =>
+            await _db.Table<Equipo>().Where(x => x.Nombre == nombre).FirstOrDefaultAsync();
         public Task<List<Equipo>> ListarEquiposAsync() =>
             _db.Table<Equipo>().OrderBy(x => x.Nombre).ToListAsync();
         public Task<int> InsertarPlanAsync(PlanPago p) => _db.InsertAsync(p);
         public Task<int> ActualizarPlanAsync(PlanPago p) => _db.UpdateAsync(p);
-        public Task<PlanPago?> ObtenerPlanPorIdAsync(int id) =>
-            _db.Table<PlanPago>().Where(x => x.PlanPagoId == id).FirstOrDefaultAsync();
+        public async Task<PlanPago?> ObtenerPlanPorIdAsync(int id) =>
+            await _db.Table<PlanPago>().Where(x => x.PlanPagoId == id).FirstOrDefaultAsync();
 
         public Task<List<PlanPago>> ListarPlanesPorEquipoAsync(int equipoId) =>
             _db.Table<PlanPago>().Where(p => p.EquipoId == equipoId).ToListAsync();
@@ -107,8 +107,8 @@ namespace Futbol_9.Servicios
         public Task<List<Campeonato>> ListarCampeonatosAsync() =>
             _db.Table<Campeonato>().OrderByDescending(x => x.Activo).ThenBy(x => x.Nombre).ToListAsync();
 
-        public Task<Campeonato?> ObtenerCampeonatoActivoAsync() =>
-            _db.Table<Campeonato>().Where(x => x.Activo).FirstOrDefaultAsync();
+        public async Task<Campeonato?> ObtenerCampeonatoActivoAsync() =>
+            await _db.Table<Campeonato>().Where(x => x.Activo).FirstOrDefaultAsync();
        
         public async Task EstablecerComoActivoAsync(int campeonatoId)
         {

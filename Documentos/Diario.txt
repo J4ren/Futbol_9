@@ -1,2 +1,13 @@
 3/11/2025
-	19.08pm (Jaren): Hice dise�o de la nueva interfaz
+	19.08pm (Jaren): Hice diseño de la nueva interfaz
+4/11/2025
+	12:42 pm (Jose): modifique el target a solo android, estoy revisando si la base de datos 
+					 cumple los requisitos y cambiando nombre de variables al estandar snake_case.
+	1:45 pm (Jose): ° resolvi advertencias: 
+						-reemplacé controles Frame con Border, añadí tipado nulo correcto en métodos,.
+					° implementé x:DataType en vistas XAML para mejor rendimiento.
+					° y por ultimo actualicé paquetes SQLite para eliminar advertencias de compilación.
+					psdt: pienso añadir un proyecto a la solucion para un servidor pequeño
+					mi idea es usa sqlite como guardado asincrono que luego cuando vuelva a tener conexion
+					con el servidor envie sus cambios
+					

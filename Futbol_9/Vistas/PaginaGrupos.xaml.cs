@@ -93,7 +93,7 @@ public partial class PaginaGrupos : ContentPage
         _preview = ServicioGrupos.RepartirEquipos(_equiposFuente, nombres);
 
         // Bind a la vista previa
-        var data = _preview.Select(kv => new
+        var data = _preview.Select(kv => new GrupoConNombre
         {
             NombreGrupo = $"Grupo {kv.Key}",
             Equipos = kv.Value

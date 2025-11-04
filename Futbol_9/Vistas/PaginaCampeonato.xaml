@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:modelos="clr-namespace:Futbol_9.Modelos"
              x:Class="Futbol_9.Vistas.PaginaCampeonato"
              Title="Configuracion del Campeonato">
 
@@ -55,7 +56,7 @@
             <Label Text="Campeonatos" FontAttributes="Bold" />
             <CollectionView x:Name="cvListado">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="modelos:Campeonato">
                         <Frame Margin="0,6" Padding="10" HasShadow="True" CornerRadius="12">
                             <VerticalStackLayout Spacing="2">
                                 <Grid ColumnDefinitions="*,Auto">
