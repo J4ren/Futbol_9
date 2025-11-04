@@ -10,4 +10,6 @@
 					psdt: pienso añadir un proyecto a la solucion para un servidor pequeño
 					mi idea es usa sqlite como guardado asincrono que luego cuando vuelva a tener conexion
 					con el servidor envie sus cambios
-					
+4/11/2025
+	17.01 pm (Jaren) : Añadi algo mas en la interfaz de inicio, voy a ver si puedo modificar la animacion al entrar la aplicacion 
+					algo acerca del futbol
