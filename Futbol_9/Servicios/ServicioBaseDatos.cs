@@ -23,6 +23,8 @@ namespace Futbol_9.Servicios
             await _db.CreateTableAsync<Jugador>();
             await _db.CreateTableAsync<Grupo>();
             await _db.CreateTableAsync<EquipoGrupo>();
+            await _db.CreateTableAsync<Aviso>();
+
         }
 
         // --CRUD --
@@ -256,5 +258,38 @@ namespace Futbol_9.Servicios
             var setAsignados = asignados.Select(a => a.EquipoId).ToHashSet();
             return equipos.Where(e => !setAsignados.Contains(e.EquipoId)).OrderBy(e => e.Nombre).ToList();
         }
+        // ========== AVISOS ==========
+        public Task<int> InsertarAvisoAsync(Aviso aviso) => _db.InsertAsync(aviso);
+        public Task<int> EliminarAvisoAsync(int avisoId) => _db.DeleteAsync<Aviso>(avisoId);
+        public Task<List<Aviso>> ListarAvisosAsync() =>
+            _db.Table<Aviso>().OrderByDescending(a => a.Fecha).ToListAsync();
+        // ========== DASHBOARD / CONTADORES ==========
+        public async Task<(Campeonato? camp, int equipos, int jugadores, int equiposPagados, int grupos)> ObtenerResumenAsync()
+        {
+            var camp = await ObtenerCampeonatoActivoAsync();
+            if (camp is null)
+                return (null, 0, 0, 0, 0);
+
+            // Equipos del campeonato activo
+            var equiposCamp = await ListarEquiposPorCampeonatoAsync(camp.CampeonatoId);
+            int equiposCount = equiposCamp.Count;
+
+            // Jugadores totales (sumar por equipo)
+            int jugadoresCount = 0;
+            foreach (var eq in equiposCamp)
+                jugadoresCount += (await ListarJugadoresPorEquipoAsync(eq.EquipoId)).Count;
+
+            // Equipos con plan totalmente pagado
+            int equiposPagados = 0;
+            foreach (var eq in equiposCamp)
+                if (await EquipoHabilitadoParaJugadoresAsync(eq.EquipoId))
+                    equiposPagados++;
+
+            // Grupos creados
+            int gruposCount = (await ListarGruposPorCampeonatoAsync(camp.CampeonatoId)).Count;
+
+            return (camp, equiposCount, jugadoresCount, equiposPagados, gruposCount);
+        }
+
     }
 }

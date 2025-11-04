@@ -5,18 +5,82 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Inicio">
 
-    <Grid Padding="24" RowDefinitions="Auto,Auto,*,Auto">
-        <Label Text="Futbol_9" FontAttributes="Bold" FontSize="28" HorizontalOptions="Center" />
-        <Label Grid.Row="1" Text="Desliza izquierda ↔ derecha para cambiar de sección"
-               FontSize="14" HorizontalOptions="Center" Margin="0,6,0,16"/>
-        <VerticalStackLayout Grid.Row="2" Spacing="10">
-            <Label Text="Atajos rápidos" FontAttributes="Bold" />
-            <HorizontalStackLayout Spacing="10">
-                <Button Text="Equipos" Clicked="GoEquipos_Clicked"/>
-                <Button Text="Planes" Clicked="GoPlanes_Clicked"/>
-                <Button Text="Pagos" Clicked="GoPagos_Clicked"/>
-            </HorizontalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <!-- 1) Encabezado -->
+            <VerticalStackLayout Spacing="4">
+                <Label x:Name="lblTituloCamp" Text="Campeonato (activo)"
+                   FontSize="22" FontAttributes="Bold" />
+                <Label x:Name="lblFechasCamp" FontSize="12" TextColor="#555" />
+            </VerticalStackLayout>
+
+            <!-- 2) Tarjetas resumen -->
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="12">
+                <Frame Padding="12" HasShadow="False" BorderColor="#CCCCCC" CornerRadius="10">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Equipos inscritos" FontAttributes="Bold"/>
+                        <Label x:Name="lblEquipos" FontSize="20"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Column="1" Padding="12" HasShadow="False" BorderColor="#CCCCCC" CornerRadius="10">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Jugadores" FontAttributes="Bold"/>
+                        <Label x:Name="lblJugadores" FontSize="20"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="1" Padding="12" HasShadow="False" BorderColor="#CCCCCC" CornerRadius="10">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Equipos habilitados (pago 100%)" FontAttributes="Bold"/>
+                        <Label x:Name="lblEquiposPagados" FontSize="20"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="1" Grid.Column="1" Padding="12" HasShadow="False" BorderColor="#CCCCCC" CornerRadius="10">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Grupos creados" FontAttributes="Bold"/>
+                        <Label x:Name="lblGrupos" FontSize="20"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+
+            <!-- 3) Avisos (reutilizamos el modelo Aviso que ya hicimos) -->
+            <Grid ColumnDefinitions="*,Auto" Padding="0,4,0,0">
+                <Label Text="Avisos" FontAttributes="Bold" FontSize="18" />
+                <Button Grid.Column="1" Text="Nuevo aviso" Clicked="AgregarAviso_Clicked" />
+            </Grid>
+
+            <CollectionView x:Name="cvAvisos">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="0,6" Padding="12" HasShadow="False" BorderColor="#CCCCCC" CornerRadius="10">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="{Binding Titulo}" FontAttributes="Bold" />
+                                <Label Text="{Binding Mensaje}" />
+                                <Label Text="{Binding Fecha, StringFormat='Publicado el {0:dd/MM/yyyy HH:mm}'}" FontSize="12" TextColor="#666" />
+                                <Button Text="Eliminar" Clicked="EliminarAviso_Clicked" Padding="4,2" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- 4) Accesos rápidos -->
+            <Label Text="Accesos rápidos" FontAttributes="Bold" />
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                <Button Text="Equipos"    Clicked="GoEquipos_Clicked"/>
+                <Button Grid.Column="1" Text="Pagos"     Clicked="GoPagos_Clicked"/>
+                <Button Grid.Column="2" Text="Grupos"    Clicked="GoGrupos_Clicked"/>
+            </Grid>
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                <Button Text="Sorteo"     Clicked="GoSorteo_Clicked"/>
+                <Button Grid.Column="1" Text="Jugadores" Clicked="GoJugadores_Clicked"/>
+                <Button Grid.Column="2" Text="Resumen"   Clicked="GoResumen_Clicked"/>
+            </Grid>
+
         </VerticalStackLayout>
-        <Label Grid.Row="3" FontSize="12" Text="v0.1 (demo swipe)" HorizontalOptions="Center" />
-    </Grid>
+    </ScrollView>
+
 </ContentPage>
